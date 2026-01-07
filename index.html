@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Toronto Time</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .clock-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .timezone-label {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .clock {
+            font-size: 2.5em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .date {
+            font-size: 1.2em;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        
+        .homework-message {
+            margin-top: 30px;
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👋 Hello World, Students!</h1>
+        
+        <div class="clock-container">
+            <div class="timezone-label">📍 Toronto Time (EST/EDT)</div>
+            <div class="clock" id="clock">--:--:--</div>
+            <div class="date" id="date">Loading...</div>
+        </div>
+        
+        <div class="homework-message">
+            ⏰ Check the time above to plan your homework schedule!
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            // Get current time in Toronto timezone (America/Toronto)
+            const now = new Date();
+            
+            // Format time for Toronto timezone
+            const timeOptions = {
+                timeZone: 'America/Toronto',
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            
+            const dateOptions = {
+                timeZone: 'America/Toronto',
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            
+            const timeString = now.toLocaleTimeString('en-US', timeOptions);
+            const dateString = now.toLocaleDateString('en-US', dateOptions);
+            
+            document.getElementById('clock').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        
+        // Update clock immediately
+        updateClock();
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
